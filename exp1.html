@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjU0NmJhdGNoMy1teW50LTM0LWJhZGdld2F0ZXJjb2xvcl8xLmpwZw.jpg');
+            background-size: cover;
+        }
+
+        .one {
+            width: 400px;
+            background-color: #d69292;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .one h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .error {
+            color: red;
+            font-size: smaller;
+            margin-top: 5px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #ffcd04;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ffc000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="one">
+        <h3>Admin Login</h3>
+        <form id="loginForm">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" placeholder="Name">
+            <span class="error" id="nameError"></span>
+
+            <label for="rollNumber">Roll Number</label>
+            <input type="text" name="rollNumber" id="rollNumber" placeholder="Roll Number">
+            <span class="error" id="rollNumberError"></span>
+
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="Phone Number">
+            <span class="error" id="phoneNumberError"></span>
+
+            <label for="email">Email Address</label>
+            <input type="email" name="email" id="email" placeholder="Email Address">
+            <span class="error" id="emailError"></span>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Password">
+            <span class="error" id="passwordError"></span>
+
+            <label for="department">Department</label>
+            <select name="department" id="department">
+                <option value="">Select Department</option>
+                <option value="IT">IT</option>
+                <option value="HR">HR</option>
+                <option value="Finance">Finance</option>
+            </select>
+            <span class="error" id="departmentError"></span>
+
+            <label>Gender</label>
+            
+                <input type="radio" id="male" name="gender" value="male">Male                
+                <input type="radio" id="female" name="gender" value="female">Female
+                
+            <span class="error" id="genderError"></span>
+
+            <label>Hobbies</label>
+   
+                <input type="checkbox" id="hobby1" name="hobbies" value="reading">Reading
+                <input type="checkbox" id="hobby2" name="hobbies" value="sports">Sports
+                <input type="checkbox" id="hobby3" name="hobbies" value="music">Music
+            <span class="error" id="hobbiesError"></span>
+
+            <button type="button" class="btn" onclick="validateForm()">Login</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var name = document.getElementById('name').value;
+            var rollNumber = document.getElementById('rollNumber').value;
+            var phoneNumber = document.getElementById('phoneNumber').value;
+            var department = document.getElementById('department').value;
+            var gender = document.querySelector('input[name="gender"]:checked');
+            var hobbies = document.querySelectorAll('input[name="hobbies"]:checked');
+
+            var emailError = document.getElementById('emailError');
+            var passwordError = document.getElementById('passwordError');
+            var nameError = document.getElementById('nameError');
+            var rollNumberError = document.getElementById('rollNumberError');
+            var phoneNumberError = document.getElementById('phoneNumberError');
+            var departmentError = document.getElementById('departmentError');
+            var genderError = document.getElementById('genderError');
+            var hobbiesError = document.getElementById('hobbiesError');
+
+            // Reset errors
+            emailError.textContent = "";
+            passwordError.textContent = "";
+            nameError.textContent = "";
+            rollNumberError.textContent = "";
+            phoneNumberError.textContent = "";
+            departmentError.textContent = "";
+            genderError.textContent = "";
+            hobbiesError.textContent = "";
+
+            // Validation logic
+            var isValid = true;
+
+            if (email === "") {
+                emailError.textContent = "Email is required";
+                isValid = false;
+            }
+
+            if (password === "") {
+                passwordError.textContent = "Password is required";
+                isValid = false;
+            }
+
+            if (name === "") {
+                nameError.textContent = "Name is required";
+                isValid = false;
+            }
+
+            if (rollNumber === "") {
+                rollNumberError.textContent = "Roll Number is required";
+                isValid = false;
+            }
+
+            if (phoneNumber === "") {
+                phoneNumberError.textContent = "Phone Number is required";
+                isValid = false;
+            }
+
+            if (department === "") {
+                departmentError.textContent = "Department is required";
+                isValid = false;
+            }
+
+            if (!gender) {
+                genderError.textContent = "Gender is required";
+                isValid = false;
+            }
+
+            if (hobbies.length === 0) {
+                hobbiesError.textContent = "Select at least one hobby";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+
+</html>
